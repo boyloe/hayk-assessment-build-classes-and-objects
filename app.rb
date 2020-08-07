@@ -1,9 +1,8 @@
 require 'pry'
 class Building
-    attr_reader :address
-    attr_accessor :number_tenants
-    @@all = []
-    @@total_tenants = 0
+    attr_reader :address 
+    attr_accessor :number_tenants, :name
+    @@all = []    
 
 
 
@@ -19,20 +18,15 @@ class Building
         @@all
     end
 
-    def self.total_tenants
+    def self.average_tenants_in_a_building
         all.reduce(0) do |total,building|
             total + building.number_tenants
-        end
-    end
-
-    def self.average_tenants_in_a_building 
-        self.total_tenants / all.count        
+        end / all.size
     end
 
 
     def placard
-        @name
-        @address
+        placard = [@name,@address]
     end
 
     def average_tenants_per_floor
